@@ -1,0 +1,32 @@
+function LongestWord(sentence) {
+    const words = sentence.match(/[a-zA-Z]+/g);
+  
+    if (!words) {
+      return null; 
+    }
+  
+    let longest = "";
+    let maxWordLength = 0;
+    let maxVowelCount = 0;
+  
+    words.forEach((word) => {
+      const cleanWord = word.toLowerCase();
+      const wordLength = cleanWord.length;
+      const vowelCount = (cleanWord.match(/[aeiou]/g) || []).length;
+  
+      if (wordLength > maxWordLength || (wordLength === maxWordLength && vowelCount > maxVowelCount)) {
+        longest = word;
+        maxWordLength = wordLength;
+        maxVowelCount = vowelCount;
+      }
+    });
+  
+    return longest;
+  }
+  
+  const sentence = "Smart people learn from everything and everyone, average people from their experience, stupid people already, have all the answers";
+  //const sentence = "Smart people learn from everything and everyone";
+  //const sentence = "Average people from their experience";
+  
+  const longest = LongestWord(sentence);
+  console.log(longest); 
